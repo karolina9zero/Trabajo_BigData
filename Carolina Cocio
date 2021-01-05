@@ -60,7 +60,8 @@ for (City in Ciudades) {
     
     
 }
-#tabla
+#Grafico de la cantidad de ventas que se realizan por segmentos de los productos
+
 counts <- table(Datos_Actual$type)
 counts <- sort(counts , decreasing = TRUE)
 barplot(counts, main="Distribución por Producto",
