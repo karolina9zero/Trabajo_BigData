@@ -66,4 +66,10 @@ counts <- table(Datos_Actual$type)
 counts <- sort(counts , decreasing = TRUE)
 barplot(counts, main="Distribución por Producto",
         xlab="Tipo de Producto" )
+        
+  #grafico por tienda      
+        counts2 <- table(Datos_Actual$store_name)
+counts2 <- sort(counts2 , decreasing = TRUE)
+barplot(counts2, main="Distribución por Tienda",
+        xlab="Nombre de la tienda" )
 
