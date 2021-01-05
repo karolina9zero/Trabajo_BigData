@@ -1,0 +1,68 @@
+
+
+#definicion de variables:
+
+Datos_LAKE_WORTH <- 0
+Datos_HOUSTON <- 0
+Datos_CHICAGO  <- 0
+Retail_StoreLAKEWORTH <- 0 
+Restaurant_LAKEWORTH <- 0 
+Retail_StoreHOUSTON<- 0
+Restaurant_HOUSTON <- 0
+Retail_StoreCHICAGO <- 0
+Restaurant_CHICAGO <-0 
+
+#determino que lake worth, chicago y houston son  ciudades :
+
+Ciudades <- c("LAKE WORTH","CHICAGO","HOUSTON")
+
+#datos de la tabla :
+Datos_Actual <- read.csv("C://Users//Usuario//Desktop//Trabajo_BigData_city.csv",sep = ";",dec = ",")
+# uso el ciclo for para determinar el tipo de pago que se hace en cada ciudad: (22-57)  
+#use el ciclo for para contar el metodo de pago que se realizo en cada ciudad
+
+for (City in Ciudades) {
+    Datos_Filtro <- subset(Datos_Actual,Datos_Actual$store_city== City )
+    if (City=="LAKE WORTH"){ 
+      N_DatosLAKEWORTH <- nrow(Datos_Filtro)
+      for (Fila in 1:nrow(Datos_Filtro)) {
+        if (Datos_Filtro[Fila,]$sales_type=="Retail store"){
+          Retail_StoreLAKEWORTH <- Retail_StoreLAKEWORTH + 1
+        }
+        if (Datos_Filtro[Fila,]$sales_type=="Restaurant"){
+          Restaurant_LAKEWORTH <- Restaurant_LAKEWORTH + 1
+        }
+      }
+    }
+    if (City=="HOUSTON"){ 
+      N_DatosHOUSTON <- nrow(Datos_Filtro)
+      for (Fila in 1:nrow(Datos_Filtro)) {
+        if (Datos_Filtro[Fila,]$sales_type=="Retail store"){
+          Retail_StoreHOUSTON <- Retail_StoreHOUSTON + 1
+        }
+        if (Datos_Filtro[Fila,]$sales_type=="Restaurant"){
+          Restaurant_HOUSTON <- Restaurant_HOUSTON + 1
+        }
+      }
+    }
+    if (City=="CHICAGO"){ 
+     N_DatosCHICAGO <- nrow(Datos_Filtro)
+     for (Fila in 1:nrow(Datos_Filtro)) {
+       if (Datos_Filtro[Fila,]$sales_type=="Retail store"){
+         Retail_StoreCHICAGO <- Retail_StoreCHICAGO + 1
+       }
+       if (Datos_Filtro[Fila,]$sales_type=="Restaurant"){
+         Restaurant_CHICAGO <- Restaurant_CHICAGO + 1
+       }
+     }
+    
+    }
+    
+    
+}
+#tabla
+counts <- table(Datos_Actual$type)
+counts <- sort(counts , decreasing = TRUE)
+barplot(counts, main="Distribución por Producto",
+        xlab="Tipo de Producto" )
+
